@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport"
+         content="width=device-width, initial-scale=1">
+</head>
+{% block content %}
+
+<h1>This Page For Hr Only!!</h1>
+   {% comment %} <a href="{% url 'add-new-job'%}" class="btn btn-warning">Add New Job</a> {% endcomment %}
+<center>
+   {% for seeker in seekers %}
+   <div class="card" style=" width: 50% ;float: left; padding: 20px; margin-left: 20px;margin-bottom: 10px;  width: 20rem; height:30rem;">
+      <div class="card-icon"><i class="bi bi-circle"></i></div>
+      <div class="card-body">
+         <h5 class="card-title">{{seeker.name}} <small>({{seeker.gender}})</small></h5>
+         <h6 class="card-title">{{seeker.email}}</h6>
+         <p class="card-text">Phone Number: {{seeker.mobile}}</p>
+         <p class="card-text">Applied For :{{seeker.company.position}}</p>
+         <a href="{% url 'job_details' seeker.company.id%}" class="btn btn-outline-primary">The Job Details</a>
+         <a href="#" class="btn btn-primary">View CV</a>
+         <a href="{%url 'delete_candidate'  seeker.id %}" class="btn btn-danger" style="margin-top:10px;">Candidate Not Qulified </a>
+      </div>
+   </div>
+   {% empty%}
+   <h2>There are No Candidates Applied </h2>
+   {% endfor %}
+</center>
+{% endblock %}

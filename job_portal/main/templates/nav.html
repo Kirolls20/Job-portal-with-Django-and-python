@@ -1,0 +1,98 @@
+  <style>
+   .navbar { background-color:#000 ;font-size:18px;	}
+   .navbar .navbar-nav .nav-link { color: #fff; }
+   .navbar .navbar-nav .nav-link:hover { color: #fbc531; }
+   .navbar .navbar-nav .active > .nav-link { color: #fbc531; }
+	.navbar-brand{
+		margin-right: 70px;
+		color:white;
+	}
+</style>
+<nav class="navbar navbar-expand-lg navbar-light ">
+	<div class="container-fluid">
+		<a  style="color:#fff;"class="navbar-brand"
+			href="#">Job Portal</a>
+		<button style="background-color: aqua;" class="navbar-toggler"
+				type="button"
+				data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse"
+			id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+					<a class="nav-link" href="{% url 'home' %}">Home</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle"
+						href="#"
+						id="navbarDropdown"
+						role="button"
+						data-bs-toggle="dropdown"
+						aria-expanded="false">
+						Options
+					</a>
+					{% for group in request.user.groups.all %}
+					<ul class="dropdown-menu"aria-labelledby="navbarDropdown">
+							{% if group.name == 'recruiter' %}
+								<li><a class="dropdown-item"
+									href="{% url 'add-new-job'%}">Add New Job (Recruiters Only)</a></li>
+							{% elif group.name == 'default ' %}
+								<li><a class="dropdown-item disabled"
+									href="{% url 'add-new-job'%}">Nothing For Deafualt User</a></li>
+							{% endif %}
+							{% if group.name == 'recruiter' %}
+							<li><a class="dropdown-item"
+								href="{% url 'hr-home' %}">View Candidates</a></li>
+							{% endif %}
+								<li><a class="dropdown-item"
+									href="{% url 'saved_list' %}">Saved Jobs</a></li>
+								</ul>
+							</li>
+							{% endfor %}
+						</ul>	
+				
+			{% if user.is_authenticated %}
+			<li class="nav-item">
+				{% for group in request.user.groups.all %}
+					{% if group.name == 'recruiter' %}
+				<div class="text-muted">Hello {{user.username|title}} (Recruiter)</div>
+				{% elif user.is_superuser %}
+				<div class="text-muted">Hello {{user.username|title}} (Admin)</div>
+				{% else %}
+				<div class="text-muted">Hello {{user.username|title}}</div>
+				{% endif %}
+				{% endfor %}
+				<button class='btn btn-outline-primary'>
+					<a style="color:#fff;" class="nav-link active"aria-current="page" href="{% url 'logout'%}">Logout</a>
+				</button>
+			</li>
+			{% else %}
+			<ul>
+				<li class="nav-item">
+					<button class='btn btn-primary'>
+						<a  style="color:#fff;" class="nav-link active"
+							aria-current="page"
+							href="{% url 'login'%}">Login</a>
+					</button>
+				</li>
+			</ul>
+			<ul>
+				<li class="nav-item">
+					<button class="btn btn-outline-warning">
+						<a class="nav-link active"
+							aria-current="page"
+							href="{% url 'sign-up'%}"> SignUp</a>
+					</button>
+				</li>
+			</ul>
+			
+			{% endif %}
+		</div> 
+	</div>
+</nav>
+	<!--# Navbar #-->

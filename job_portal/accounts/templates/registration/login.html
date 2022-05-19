@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+{% block content %}
+<head>
+   <style>
+      * {box-sizing: border-box}
+
+input:hover,
+.btn:hover {
+  opacity: 1;
+}
+
+.google-login{
+   margin:30px;
+}
+
+
+.google {
+   background-color: #dd4b39;
+   color: white;
+   padding:16px;
+   border:none;
+   margin-top: 25px;
+   font-size: 20px;
+}
+
+
+/* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 650px) {
+   .col {
+      width: 100%;
+      margin-top: 0;
+   }
+
+  /* show the hidden text on small screens */
+  .hide-md-lg {
+    display: block;
+    text-align: center;
+  }
+}
+   </style>
+</head>
+
+<div class="container">
+<form action="#" method="post">
+   <h3>Login </h3>
+   {% csrf_token %}
+      <div class="row">
+         {{form|crispy}}
+         <br>
+         <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+         <div class="col">
+            <div class="hide-md-lg">
+               <div class='container-fluid'>
+                     </div>
+                  </div>
+            <center>
+               <div class="google-login">
+                  <h2>Or</h2>
+                  <a  onload="document.forms['google_login'].submit()" href="{% provider_login_url 'google' %}"
+                     class="google btn">
+                     <i class="fa fa-google fa-fw"></i> SignIn with Google
+                  </a>
+               </div>
+            </center>
+            
+      </form>
+{% endblock %}

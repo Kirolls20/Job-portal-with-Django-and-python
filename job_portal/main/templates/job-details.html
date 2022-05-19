@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<head>
+   <link rel="stylesheet" href="{% static 'css/job_details.css' %}">
+</head>
+<body>
+   <div style="padding: 20px;">
+      <button type="button" class="btn btn-info" onclick="window.location.href='{% url "home" %}' ; return false;">Back</button>
+      {% for group in request.user.groups.all %}
+         {% if group.name == 'recruiter' %}
+      <a href="{% url 'update_job' job.id %}" class='btn btn-warning'>Update Job (Recruiter)</a>
+      <a href="{% url 'delete_job' job.id %}"class='btn btn-danger'>Delet This Job (Recruiter)</a>
+      {% endif %}
+      {% endfor %}   
+   </div>
+   
+      <h1 style="white-space:nowrap;">{{job.position}}</h1>
+      <small style=" margin:16px; padding-top:15px;font-size: 20px;color: blue;">{{count}} Applied to this job</small>
+
+   <h4 style="margin:10px;">Location <strong>{{job.location}}</strong></h4>
+   <h5 style="color:black;">Experince Level <strong>{{job.seniorty_level}}</strong></h5>
+   <h5 style="color:black;"> Job Type <strong>{{job.job_type}}</strong></h5>
+   <h6 >{{job.pub_date|timesince}} Ago.</h6>
+   <div class="job-details">
+      <div class="content">
+         <h3 style="color:black;">Description</h3>
+         <p>{{job.description}}</p>
+      </div>
+      <div class="content">
+         <h3 style="color:black;">Experince Required</h3>
+         <p>{{job.experince}}</p </div>
+         <div class="content">
+            <h3 style="color:black;">Salary</h3>
+            {{job.salary}}k/Year
+         </div>
+         <div style="padding:10px;">
+            <a href="{% url 'job_apply' job.id  %}" class="btn btn-primary">Apply Now </a>
+           <form action="{% url 'save_job' job.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit"class="btn btn-outline-primary" style="margin-top: 10px; color:black">Save for later</button>
+         </form>
+         </div>
+      </div>
+   
+   
+      {% endblock%}
+</body>

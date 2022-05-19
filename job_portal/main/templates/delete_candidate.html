@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<center>
+   <h2>Delete Candidate</h2>
+   <h4 style="padding:20px;">Are you sure from deleting this candidate?? </h4>
+   <form action="#"
+         method="post">
+      {% csrf_token %}
+      <div style="margin-top:30px; padding:20px;">
+         <button type="submit" class='btn btn-danger'>Delete</button>
+         <a href="{% url 'hr-home' %}"
+            class="btn btn-light">Back</a>
+      </div>   
+   </form>
+</center>
+{% endblock %}

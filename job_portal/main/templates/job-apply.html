@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1>Apply Job</h1>
+<form action="#" method="post" enctype='multipart/form-data'>
+   {% csrf_token %}
+   {{form|crispy}}
+   <br>
+   <div class="d-grid gap-2 col-6 mx-auto">
+      <button typpe=submit class="btn btn-primary">Submit</button>
+   </div>
+</form>
+
+{% endblock %}
