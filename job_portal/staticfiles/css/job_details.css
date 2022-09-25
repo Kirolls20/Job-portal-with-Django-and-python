@@ -1,0 +1,28 @@
+h1{
+   color:rgb(177, 41, 41);
+   font-weight:bold;
+   margin:16px;
+   
+}
+h3{
+   margin:20px;
+   padding:5px;
+}
+
+h5{
+   margin: 20px;
+   padding: 5px;
+}
+h6{
+   color:rgb(54, 104, 4);
+   margin: 20px;
+   padding-top:5px;
+}
+.job-details{
+   border-top:1px solid black;
+   margin:none;
+}
+.content{
+   padding:15px;
+   font-size:20px;
+}
