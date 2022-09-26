@@ -15,7 +15,9 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True,cast=bool) 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS =['*']
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-7367.up.railway.app'
+]
 
 #  .\cloudflared-windows-amd64.exe tunnel --url localhost:8000
 # Application definition
