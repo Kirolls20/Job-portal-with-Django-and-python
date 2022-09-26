@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
+DEBUG =True
 
 ALLOWED_HOSTS = ['*']
 # CSRF_TRUSTED_ORIGINS =[]
@@ -83,10 +83,10 @@ DATABASES = {
     'default': {
         #'ENGINE': 'django.db.backends.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config("DB_NAME"),
-        'USER': config('DB_USER'),
+        'NAME': 'railway',
+        'USER': 'postgres',
         'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
+        'HOST': 'containers-us-west-34.railway.app',
         'PORT': '6822',
     }
 }
